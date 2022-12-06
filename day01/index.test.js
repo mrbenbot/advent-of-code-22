@@ -1,23 +1,26 @@
 import { readFileSync } from "fs";
+import { resolve } from "path";
+import { fileURLToPath } from "url";
 import { partOne, partTwo } from ".";
 
-const sampleInput = readFileSync("./sample.txt", "utf-8");
-const actualInput = readFileSync("./actual.txt", "utf-8");
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const sampleInput = readFileSync(resolve(__dirname, "./sample.txt"), "utf-8");
+const actualInput = readFileSync(resolve(__dirname, "./actual.txt"), "utf-8");
 
 describe("part one", () => {
-  test.only("sampleInput", () => {
-    expect(partOne(sampleInput)).toBe();
+  test("sampleInput", () => {
+    expect(partOne(sampleInput)).toBe(24000);
   });
   test("actualInput", () => {
-    expect(partOne(actualInput)).toBe("");
+    expect(partOne(actualInput)).toBe(69912);
   });
 });
 
-describe.skip("part two", () => {
+describe("part two", () => {
   test("sampleInput", () => {
-    expect(partTwo(sampleInput)).toBe();
+    expect(partTwo(sampleInput)).toBe(45000);
   });
   test("actualInput", () => {
-    expect(partTwo(actualInput)).toBe("");
+    expect(partTwo(actualInput)).toBe(208180);
   });
 });
