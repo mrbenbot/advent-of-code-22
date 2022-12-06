@@ -1,7 +1,10 @@
 export function partOne(input) {
-  return null;
+  return processInput(input);
+}
+export function partTwo(input) {
+  return processInput(input);
 }
 
-export function partTwo(input) {
-  return null;
+function processInput(input) {
+  return input;
 }
