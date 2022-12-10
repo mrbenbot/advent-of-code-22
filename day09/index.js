@@ -1,12 +1,14 @@
+import { writeFileSync } from "fs";
 export function partOne(input) {
-  const pathModeler = new SnakePathModeler();
+  const pathModeler = new RopePathModeler();
   pathModeler.batchMove(processInput(input));
   return pathModeler.tailPositions.size;
 }
 
 export function partTwo(input) {
-  const pathModeler = new SnakePathModeler(9);
+  const pathModeler = new RopePathModeler(10);
   pathModeler.batchMove(processInput(input));
+  writeFileSync("./output.json", JSON.stringify(pathModeler.ropes));
   return pathModeler.tailPositions.size;
 }
 
@@ -17,11 +19,11 @@ function processInput(input) {
   });
 }
 
-class SnakePathModeler {
-  constructor(ropeLength = 1) {
+class RopePathModeler {
+  constructor(ropeLength = 2) {
     this.rope = new Array(ropeLength).fill(null).map((_) => ({ x: 0, y: 0 }));
-    this.head = { x: 0, y: 0 };
     this.tailPositions = new Set();
+    this.ropes = [];
   }
 
   move(direction, amount) {
@@ -31,9 +33,10 @@ class SnakePathModeler {
   }
 
   moveRope(direction) {
-    this.head = getNextPosition(this.head, direction);
-    for (let i = 0; i < this.rope.length; i++) {
-      const prev = this.rope[i - 1] ?? this.head;
+    this.ropes.push([...this.rope]);
+    this.rope[0] = getNextPosition(this.rope[0], direction);
+    for (let i = 1; i < this.rope.length; i++) {
+      const prev = this.rope[i - 1];
       const nextTail = getNextTailPosition(prev, this.rope[i]);
       this.rope[i] = nextTail;
     }
