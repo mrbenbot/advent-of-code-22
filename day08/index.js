@@ -19,7 +19,6 @@ export function partTwo(input) {
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
       maxScenicScore = Math.max(getScenicScore(matrix, i, j), maxScenicScore);
-      // console.log({ i, j, maxScenicScore });
     }
   }
   return maxScenicScore;
@@ -31,7 +30,6 @@ function getScenicScore(matrix, row, column) {
   // to the right
   const right = matrix[row].slice(column + 1);
   const rightScore = score(tree, right);
-  console.log({ tree, right, rightScore });
   // to the left
   const left = matrix[row].slice(0, column).reverse();
   const leftScore = score(tree, left);
@@ -41,7 +39,6 @@ function getScenicScore(matrix, row, column) {
   // up
   const up = sliceDown(matrix, 0, column, row).reverse();
   const upScore = score(tree, up);
-  // console.log({ tree, up, upScore });
   return rightScore * leftScore * downScore * upScore;
 }
 

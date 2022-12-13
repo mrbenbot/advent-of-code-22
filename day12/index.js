@@ -31,8 +31,6 @@ export function distanceFrom(matrix, start, end) {
   matrix[start.y][start.x].distanceToGoal = distanceToGoal(start, end);
   matrix[end.y][end.x].elevation = "z";
 
-  console.log({ start, end });
-
   const pointsQueue = [start];
 
   while (pointsQueue.length > 0) {

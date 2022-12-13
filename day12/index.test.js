@@ -16,11 +16,11 @@ describe("part one", () => {
   });
 });
 
-describe.only("part two", () => {
+describe("part two", () => {
   test("sampleInput", () => {
     expect(partTwo(sampleInput)).toBe(29);
   });
   test("actualInput", () => {
-    expect(partTwo(actualInput)).toBe();
+    expect(partTwo(actualInput)).toBe(439);
   });
 });
